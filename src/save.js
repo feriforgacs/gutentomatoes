@@ -1,26 +1,54 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
- */
-import { __ } from '@wordpress/i18n';
-
-/**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
- *
- * @return {WPElement} Element to render.
- */
-export default function save() {
+import { __ } from "@wordpress/i18n";
+export default function Save({ attributes, className }) {
 	return (
-		<p>
-			{ __(
-				'Gutentomatoes – hello from the saved content!',
-				'create-block'
-			) }
-		</p>
+		<div className={`gutentomato-movie`}>
+			<img
+				className={`gutentomato-movie__poster`}
+				src={attributes.moviePoster}
+				alt={`${attributes.movieName} poster`}
+			/>
+
+			<h3 className={`gutentomato-movie__name`}>{attributes.movieName}</h3>
+
+			<h4>{__(`Critics Consensus`, `gutentomatoes`)}</h4>
+
+			<p className={`gutentomato-movie__critics-consensus`}>
+				{attributes.movieCriticsConsensus}
+			</p>
+
+			<p>
+				{__(`Tomatometer:`, `gutentomatoes`)}{" "}
+				<span className={`gutentomato-movie__score`}>
+					{attributes.movieTomatometer}
+				</span>{" "}
+				%
+			</p>
+
+			<p>
+				{__(`Total Count:`, `gutentomatoes`)}{" "}
+				<span className={`gutentomato-movie__count`}>
+					{attributes.movieReviewCount}
+				</span>
+			</p>
+
+			<p>
+				{__(`Audience Score:`, `gutentomatoes`)}{" "}
+				<span className={`gutentomato-movie__audience-score`}>
+					{attributes.movieAudienceScore}
+				</span>{" "}
+				%
+			</p>
+
+			<p>
+				{__(`User Ratings:`, `gutentomatoes`)}{" "}
+				<span className={`gutentomato-movie__user-ratings-count`}>
+					{attributes.movieUserRatingsCount}
+				</span>
+			</p>
+
+			<a href={attributes.movieURL} className={`gutentomato-movie__url`}>
+				{__(`View on Rotten Tomatoes`, `gutentomatoes`)}
+			</a>
+		</div>
 	);
 }
