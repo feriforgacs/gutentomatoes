@@ -120,16 +120,48 @@ function gutentomatoes_ajax_handler(){
 			$movie_poster = "";
 			$movie_og_image_tag = $movie_xpath->query( '//meta[@property="og:image"]' );
 
-			// get poster URL only if og:imge meta exists
+			// set poster URL only if og:imge meta exists
 			if( $movie_og_image_tag->length > 0 ){
 				$movie_poster = $movie_og_image_tag->item(0)->getAttribute( 'content' );
 			}
 
+			// get critics consensus
+			$movie_critics_consensus = "";
+			$movie_critics_consensus_tag = $movie_xpath->query( '//p[@class="mop-ratings-wrap__text mop-ratings-wrap__text--concensus"]' );
+
+			// set critics consensus only if exists
+			if( $movie_critics_consensus_tag->length > 0 ){
+				$movie_critics_consensus = strip_tags( trim( $movie_critics_consensus_tag->item(0)->nodeValue ) );
+			}
+
+			// get audience score
+			$movie_audience_score = "";
+			$movie_audience_score_tag = $movie_xpath->query( '//span[@class="mop-ratings-wrap__percentage"]' );
+
+			// set audience score only if exists
+			if( $movie_audience_score_tag->length > 0 ){
+				// there are 2 items on the page with the same class, we need the 2nd one
+				$movie_audience_score = preg_replace( '/[^0-9]/', '', strip_tags( trim( $movie_audience_score_tag->item(1)->nodeValue ) ) );
+			}
+
+			// get user ratings count
+			$movie_user_ratings_count = "";
+			$movie_user_ratings_count_tag = $movie_xpath->query( '//strong[@class="mop-ratings-wrap__text--small"]' );
+
+			// set user ratings count only if exists
+			if( $movie_user_ratings_count_tag->length > 0 ){
+				// there are 2 items on the page with the same class, we need the 2nd one
+				$movie_user_ratings_count = preg_replace( '/[^0-9]/', '', strip_tags( trim( $movie_user_ratings_count_tag->item(1)->nodeValue ) ) );
+			}
+
 			$movie_data = [
-				'poster'				=> $movie_poster,
-				'name' 					=> $movie_schema->name,
-				'tomatometer' 	=> $movie_schema->aggregateRating->ratingValue,
-				'review_count' 	=> $movie_schema->aggregateRating->reviewCount
+				'poster'							=> $movie_poster,
+				'name' 								=> $movie_schema->name,
+				'tomatometer' 				=> $movie_schema->aggregateRating->ratingValue,
+				'review_count' 				=> $movie_schema->aggregateRating->reviewCount,
+				'critics_consensus' 	=> $movie_critics_consensus,
+				'audience_score'			=> $movie_audience_score,
+				'user_ratings_count'	=> $movie_user_ratings_count
 			];
 
 			$result['status'] = 'success';
