@@ -126,10 +126,10 @@ function gutentomatoes_ajax_handler(){
 			}
 
 			$movie_data = [
-				"name" 					=> $movie_schema->name,
-				"rating" 				=> $movie_schema->aggregateRating->ratingValue,
-				"review_count" 	=> $movie_schema->aggregateRating->reviewCount,
-				"poster"				=> $movie_poster
+				'poster'				=> $movie_poster,
+				'name' 					=> $movie_schema->name,
+				'tomatometer' 	=> $movie_schema->aggregateRating->ratingValue,
+				'review_count' 	=> $movie_schema->aggregateRating->reviewCount
 			];
 
 			$result['status'] = 'success';
