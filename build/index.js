@@ -426,7 +426,7 @@ function Edit(_ref) {
     alt: "tomatoe icon"
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
     className: "gutentomato-movie__score"
-  }, attributes.movieTomatometer, "%"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Tomatometer", "gutentomatoes")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("br", null), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Total Count:", "gutentomatoes"), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
+  }, attributes.movieTomatometer), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Tomatometer", "gutentomatoes")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("br", null), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Total Count:", "gutentomatoes"), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
     className: "gutentomato-movie__count"
   }, attributes.movieReviewCount))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     className: "col col--audience"
@@ -435,14 +435,14 @@ function Edit(_ref) {
     alt: "popcorn icon"
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
     className: "gutentomato-movie__audience-score"
-  }, attributes.movieAudienceScore, "%"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Audience Score", "gutentomatoes")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("br", null), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("User Ratings:", "gutentomatoes"), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
+  }, attributes.movieAudienceScore), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Audience Score", "gutentomatoes")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("br", null), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("User Ratings:", "gutentomatoes"), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
     className: "gutentomato-movie__user-ratings-count"
   }, attributes.movieUserRatingsCount)))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("a", {
     href: attributes.movieURL,
     className: "gutentomato-movie__url",
     target: "_blank",
     rel: "nofollow noopener noreferrer"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Learn more on Rotten Tomatoes", "gutentomatoes")))), isSelected && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Placeholder"], {
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Learn more on Rotten Tomatoes", "gutentomatoes")))), (isSelected || !attributes.movieURL) && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Placeholder"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Rotten Tomatoes Movie URL", "gutentomatoes"),
     instructions: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Paste a link to the content you want to display on your site.", "gutentomatoes")
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("form", {

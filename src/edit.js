@@ -117,7 +117,7 @@ export default function Edit({
 							<div className="col col--tomatometer">
 								<img src={Tomatoe} alt="tomatoe icon" />
 								<span className={`gutentomato-movie__score`}>
-									{attributes.movieTomatometer}%
+									{attributes.movieTomatometer}
 								</span>
 								<p>
 									<strong>{__(`Tomatometer`, `gutentomatoes`)}</strong>
@@ -131,7 +131,7 @@ export default function Edit({
 							<div className="col col--audience">
 								<img src={Popcorn} alt="popcorn icon" />
 								<span className={`gutentomato-movie__audience-score`}>
-									{attributes.movieAudienceScore}%
+									{attributes.movieAudienceScore}
 								</span>
 								<p>
 									<strong>{__(`Audience Score`, `gutentomatoes`)}</strong>
@@ -157,7 +157,7 @@ export default function Edit({
 			)}
 
 			{/* display form to embed movie information */}
-			{isSelected && (
+			{(isSelected || !attributes.movieURL) && (
 				<Placeholder
 					label={__(`Rotten Tomatoes Movie URL`, `gutentomatoes`)}
 					instructions={__(
