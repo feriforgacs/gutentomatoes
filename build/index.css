@@ -1,10 +1,61 @@
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
-.wp-block-create-block-gutentomatoes {
-  border: 1px dotted #f00; }
+.wp-block-create-block-gutentomatoes .gutentomato-movie {
+  align-items: flex-start;
+  background: #eee;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1rem 1rem 2rem;
+  position: relative; }
+  @media only screen and (min-width: 630px) {
+    .wp-block-create-block-gutentomatoes .gutentomato-movie {
+      flex-direction: row;
+      padding: 1rem; } }
+  .wp-block-create-block-gutentomatoes .gutentomato-movie__poster {
+    margin: 0 auto 1rem;
+    max-width: 200px; }
+    @media only screen and (min-width: 630px) {
+      .wp-block-create-block-gutentomatoes .gutentomato-movie__poster {
+        margin-right: 1rem; } }
+  .wp-block-create-block-gutentomatoes .gutentomato-movie__name {
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    font-size: 1.3rem;
+    margin: 0 0 0.5rem;
+    padding: 0 0 0.5rem; }
+  .wp-block-create-block-gutentomatoes .gutentomato-movie h4 {
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0; }
+  .wp-block-create-block-gutentomatoes .gutentomato-movie__critics-consensus {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    padding: 0; }
+  .wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container {
+    display: flex;
+    justify-content: space-evenly; }
+    .wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container .col {
+      padding: 0 0.2rem; }
+      .wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container .col img {
+        margin-right: 0.5rem;
+        max-width: 30px; }
+      .wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container .col p {
+        font-size: 0.9rem;
+        margin: 0;
+        padding: 0; }
+      .wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container .col:first-child {
+        text-align: right; }
+  .wp-block-create-block-gutentomatoes .gutentomato-movie__score, .wp-block-create-block-gutentomatoes .gutentomato-movie__audience-score {
+    font-size: 2rem;
+    font-weight: 700; }
+  .wp-block-create-block-gutentomatoes .gutentomato-movie a {
+    bottom: 0.8rem;
+    color: #888;
+    font-size: 0.7rem;
+    position: absolute;
+    right: 1rem;
+    text-align: right;
+    text-decoration: underline; }
 
 
 /*# sourceMappingURL=index.css.map*/
