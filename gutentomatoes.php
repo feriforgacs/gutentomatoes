@@ -141,7 +141,9 @@ function gutentomatoes_ajax_handler(){
 			// set audience score only if exists
 			if( $movie_audience_score_tag->length > 0 ){
 				// there are 2 items on the page with the same class, we need the 2nd one
-				$movie_audience_score = preg_replace( '/[^0-9]/', '', strip_tags( trim( $movie_audience_score_tag->item(1)->nodeValue ) ) );
+				$movie_audience_score = $movie_audience_score_tag->item(1)->nodeValue;
+				// clean data
+				$movie_audience_score = preg_replace( '/[^0-9]/', '', strip_tags( trim( $movie_audience_score ) ) );
 			}
 
 			// get user ratings count
@@ -151,16 +153,20 @@ function gutentomatoes_ajax_handler(){
 			// set user ratings count only if exists
 			if( $movie_user_ratings_count_tag->length > 0 ){
 				// there are 2 items on the page with the same class, we need the 2nd one
-				$movie_user_ratings_count = preg_replace( '/[^0-9]/', '', strip_tags( trim( $movie_user_ratings_count_tag->item(1)->nodeValue ) ) );
+				$movie_user_ratings_count = $movie_user_ratings_count_tag->item(1)->nodeValue;
+				//clean data
+				$movie_user_ratings_count = preg_replace( '/[^0-9]/', '', strip_tags( trim( $movie_user_ratings_count ) ) );
+				// format number
+				$movie_user_ratings_count = number_format( $movie_user_ratings_count, 0, '', ' ' );
 			}
 
 			$movie_data = [
 				'poster'							=> $movie_poster,
 				'name' 								=> $movie_schema->name,
-				'tomatometer' 				=> $movie_schema->aggregateRating->ratingValue,
+				'tomatometer' 				=> $movie_schema->aggregateRating->ratingValue . "%",
 				'review_count' 				=> $movie_schema->aggregateRating->reviewCount,
 				'critics_consensus' 	=> $movie_critics_consensus,
-				'audience_score'			=> $movie_audience_score,
+				'audience_score'			=> $movie_audience_score . "%",
 				'user_ratings_count'	=> $movie_user_ratings_count
 			];
 
