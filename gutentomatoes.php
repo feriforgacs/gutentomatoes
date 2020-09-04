@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:     Rotten Tomatoes Gutenberg Block
- * Description:     Example block written with ESNext standard and JSX support – build step required.
+ * Description:     Gutenberg block that you can use to add Rotten Tomatoes movie ratings to your posts or pages
  * Version:         0.1.0
  * Author:          Ferenc Forgacs
  * License:         GPL-2.0-or-later

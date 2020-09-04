@@ -56,6 +56,26 @@
     right: 1rem;
     text-align: right;
     text-decoration: underline; }
+  .wp-block-create-block-gutentomatoes .gutentomato-movie__form .components-base-control {
+    flex: 1 1 auto;
+    padding: 0 8px 0 0; }
+    .wp-block-create-block-gutentomatoes .gutentomato-movie__form .components-base-control .components-text-control__input {
+      line-height: 1.7; }
+  .wp-block-create-block-gutentomatoes .gutentomato-movie__error-message {
+    border-left: 4px solid #d94f4f;
+    background-color: #f9e2e2;
+    flex: 100%;
+    margin: 0 0 1rem;
+    padding: 1rem; }
+  .wp-block-create-block-gutentomatoes .gutentomato-movie--loading {
+    background: #f7f7f7; }
+    .wp-block-create-block-gutentomatoes .gutentomato-movie--loading .components-spinner {
+      margin: 5px auto; }
+    .wp-block-create-block-gutentomatoes .gutentomato-movie--loading p {
+      color: #888;
+      font-size: 0.8rem;
+      font-style: italic;
+      text-align: center; }
 
 
 /*# sourceMappingURL=index.css.map*/

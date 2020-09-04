@@ -326,6 +326,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_editor_scss__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _images_tomatoe_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./images/tomatoe.svg */ "./src/images/tomatoe.svg");
 /* harmony import */ var _images_popcorn_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./images/popcorn.svg */ "./src/images/popcorn.svg");
+/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./icon */ "./src/icon.js");
+
 
 
 
@@ -344,6 +346,11 @@ function Edit(_ref) {
       _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
       isLoading = _useState2[0],
       setLoading = _useState2[1];
+
+  var _useState3 = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
+      _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState3, 2),
+      embedError = _useState4[0],
+      setEmbedError = _useState4[1];
   /**
    * Scrape movie information
    * @param {string} url The URL of the movie
@@ -351,11 +358,12 @@ function Edit(_ref) {
 
 
   var scrapeMovieData = function scrapeMovieData(movie_url) {
-    setLoading(true); // ajax request action
+    setLoading(true);
+    setEmbedError(''); // ajax request action
 
-    var action = "gutentomatoes_action";
-    var plugin_action = "scrape_url";
-    var nonce = document.getElementById("gutentomatoes_nonce").value; // ajax request data
+    var action = 'gutentomatoes_action';
+    var plugin_action = 'scrape_url';
+    var nonce = document.getElementById('gutentomatoes_nonce').value; // ajax request data
 
     var data = {
       nonce: nonce,
@@ -364,32 +372,31 @@ function Edit(_ref) {
       plugin_action: plugin_action
     };
     jQuery.post(ajaxurl, data, function (response) {
-      // change loading status
       setLoading(false);
 
-      if (response.status !== "success") {
+      if (response.status !== 'success') {
         // set alert message
-        var alertMessage = "";
+        var alertMessage = '';
 
         switch (response.data) {
-          case "invalid_url":
-            alertMessage = Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Please, use a valid Rotten Tomatoes URL", "gutentomatoes");
+          case 'invalid_url':
+            alertMessage = Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Please, use a valid Rotten Tomatoes URL', 'gutentomatoes');
             break;
 
-          case "no_html":
-            alertMessage = Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("We were unable to get the necessary information. Please, try to use a different URL.", "gutentomatoes");
+          case 'no_html':
+            alertMessage = Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('We were unable to get the necessary information. Please, try to use a different URL.', 'gutentomatoes');
             break;
 
-          case "no_schema_found":
-            alertMessage = Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("We were unable to get the necessary information. Please, try to use a different URL.", "gutentomatoes");
+          case 'no_schema_found':
+            alertMessage = Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('We were unable to get the necessary information. Please, try to use a different URL.', 'gutentomatoes');
             break;
 
           default:
             break;
-        } // display alert message
+        } // set alert message
 
 
-        alert(alertMessage);
+        setEmbedError(alertMessage);
         return;
       }
 
@@ -407,7 +414,10 @@ function Edit(_ref) {
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     className: className
-  }, isLoading && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Spinner"], null), attributes.movieName && !isLoading && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+  }, isLoading && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Placeholder"], {
+    isColumnLayout: true,
+    className: "gutentomato-movie--loading"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Spinner"], null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Getting data from Rotten Tomatoes...', 'gutentomatoes'))), attributes.movieName && !isLoading && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     className: "gutentomato-movie"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("img", {
     className: "gutentomato-movie__poster",
@@ -415,7 +425,7 @@ function Edit(_ref) {
     alt: "".concat(attributes.movieName, " poster")
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("h3", {
     className: "gutentomato-movie__name"
-  }, attributes.movieName), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("h4", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Critics Consensus", "gutentomatoes")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
+  }, attributes.movieName), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("h4", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Critics Consensus', 'gutentomatoes')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
     className: "gutentomato-movie__critics-consensus"
   }, attributes.movieCriticsConsensus), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     className: "gutentomato-movie__scores-container"
@@ -426,7 +436,7 @@ function Edit(_ref) {
     alt: "tomatoe icon"
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
     className: "gutentomato-movie__score"
-  }, attributes.movieTomatometer), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Tomatometer", "gutentomatoes")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("br", null), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Total Count:", "gutentomatoes"), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
+  }, attributes.movieTomatometer), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Tomatometer', 'gutentomatoes')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("br", null), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Total Count:', 'gutentomatoes'), ' ', Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
     className: "gutentomato-movie__count"
   }, attributes.movieReviewCount))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     className: "col col--audience"
@@ -435,23 +445,27 @@ function Edit(_ref) {
     alt: "popcorn icon"
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
     className: "gutentomato-movie__audience-score"
-  }, attributes.movieAudienceScore), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Audience Score", "gutentomatoes")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("br", null), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("User Ratings:", "gutentomatoes"), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
+  }, attributes.movieAudienceScore), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Audience Score', 'gutentomatoes')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("br", null), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('User Ratings:', 'gutentomatoes'), ' ', Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
     className: "gutentomato-movie__user-ratings-count"
   }, attributes.movieUserRatingsCount)))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("a", {
     href: attributes.movieURL,
     className: "gutentomato-movie__url",
     target: "_blank",
     rel: "nofollow noopener noreferrer"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Learn more on Rotten Tomatoes", "gutentomatoes")))), (isSelected || !attributes.movieURL) && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Placeholder"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Rotten Tomatoes Movie URL", "gutentomatoes"),
-    instructions: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Paste a link to the content you want to display on your site.", "gutentomatoes")
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Learn more on Rotten Tomatoes', 'gutentomatoes')))), (isSelected || !attributes.movieURL) && !attributes.moviePoster && !isLoading && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Placeholder"], {
+    icon: _icon__WEBPACK_IMPORTED_MODULE_7__["default"],
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Rotten Tomatoes Movie URL', 'gutentomatoes'),
+    instructions: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Paste a link to the content you want to display on your site.', 'gutentomatoes')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("form", {
     onSubmit: function onSubmit() {
       return parseURL(attributes.movieURL);
-    }
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["TextControl"], {
-    value: attributes.movieURL || "",
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])("Enter movie URL to embed here...", "gutentomatoes"),
+    },
+    className: "gutentomato-movie__form"
+  }, embedError && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
+    className: "gutentomato-movie__error-message"
+  }, embedError), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["TextControl"], {
+    value: attributes.movieURL || '',
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Enter movie URL to embed here...', 'gutentomatoes'),
     onChange: function onChange(val) {
       setAttributes({
         movieURL: val
@@ -480,6 +494,42 @@ function Edit(_ref) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/icon.js":
+/*!*********************!*\
+  !*** ./src/icon.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+var icon = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("svg", {
+  width: "20",
+  height: "20",
+  viewBox: "0 0 20 20",
+  fill: "none",
+  xmlns: "http://www.w3.org/2000/svg"
+}, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("rect", {
+  width: "20",
+  height: "20",
+  fill: "white"
+}), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("path", {
+  d: "M3.42267 5.48624C-0.68959 9.52151 1.42753 14.3993 2.585 15.9946C7.73522 22.1236 16.1409 19.6963 18.9309 15.1316C19.6264 13.9333 22.2258 7.32067 15.4283 3.73535L3.42267 5.48624Z",
+  fill: "#F93208"
+}), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("path", {
+  d: "M6.2655 5.25707L6.96349 3.96262L11.1133 3.22656L12.7377 4.57178L6.2655 5.25707Z",
+  fill: "#F93208"
+}), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("path", {
+  d: "M6.23957 0.77173L7.54973 0L8.53684 2.26131C9.09088 1.33765 10.5514 -0.122276 12.1801 1.57931C11.4894 1.76391 11.0821 2.14253 11.0495 2.81768C13.262 2.20853 15.6283 3.28702 15.9491 4.14579C14.3493 3.51556 11.9032 5.66175 9.84686 4.48676C9.84817 6.68467 8.00365 6.91709 6.9394 6.98137C7.24282 6.25151 7.75618 5.52136 7.15473 4.79194C6.04183 5.98563 5.12789 6.35041 2.30896 5.47388C3.02129 5.2286 4.47736 3.80993 5.88054 3.80481C4.89079 3.44441 4.08511 3.49993 3.27811 3.58933C3.70426 3.01067 5.05295 1.36922 7.45991 2.35108L6.23957 0.77173Z",
+  fill: "#02902E"
+}));
+/* harmony default export */ __webpack_exports__["default"] = (icon);
 
 /***/ }),
 
@@ -608,61 +658,63 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/edit.js");
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./save */ "./src/save.js");
+/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./icon */ "./src/icon.js");
 
 
 
 
 
-Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])("create-block/gutentomatoes", {
-  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Rotten Tomatoes", "gutentomatoes"),
-  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Example block written with ESNext standard and JSX support – build step required.", "gutentomatoes"),
-  category: "embed",
-  icon: "star-filled",
+
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])('create-block/gutentomatoes', {
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Rotten Tomatoes', 'gutentomatoes'),
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Use this block to add Rotten Tomatoes movie ratings to your posts or pages', 'gutentomatoes'),
+  category: 'embed',
+  icon: _icon__WEBPACK_IMPORTED_MODULE_5__["default"],
   supports: {
     html: false
   },
   attributes: {
     movieURL: {
-      type: "string",
-      source: "attribute",
-      selector: ".gutentomato-movie__url",
-      attribute: "href"
+      type: 'string',
+      source: 'attribute',
+      selector: '.gutentomato-movie__url',
+      attribute: 'href'
     },
     moviePoster: {
-      type: "string",
-      source: "attribute",
-      selector: ".gutentomato-movie__poster",
-      attribute: "src"
+      type: 'string',
+      source: 'attribute',
+      selector: '.gutentomato-movie__poster',
+      attribute: 'src'
     },
     movieName: {
-      type: "string",
-      source: "text",
-      selector: ".gutentomato-movie__name"
+      type: 'string',
+      source: 'text',
+      selector: '.gutentomato-movie__name'
     },
     movieTomatometer: {
-      type: "string",
-      source: "text",
-      selector: ".gutentomato-movie__score"
+      type: 'string',
+      source: 'text',
+      selector: '.gutentomato-movie__score'
     },
     movieReviewCount: {
-      type: "string",
-      source: "text",
-      selector: ".gutentomato-movie__count"
+      type: 'string',
+      source: 'text',
+      selector: '.gutentomato-movie__count'
     },
     movieCriticsConsensus: {
-      type: "string",
-      source: "text",
-      selector: ".gutentomato-movie__critics-consensus"
+      type: 'string',
+      source: 'text',
+      selector: '.gutentomato-movie__critics-consensus'
     },
     movieAudienceScore: {
-      type: "string",
-      source: "text",
-      selector: ".gutentomato-movie__audience-score"
+      type: 'string',
+      source: 'text',
+      selector: '.gutentomato-movie__audience-score'
     },
     movieUserRatingsCount: {
-      type: "string",
-      source: "text",
-      selector: ".gutentomato-movie__user-ratings-count"
+      type: 'string',
+      source: 'text',
+      selector: '.gutentomato-movie__user-ratings-count'
     }
   },
   edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -694,15 +746,15 @@ __webpack_require__.r(__webpack_exports__);
 function Save(_ref) {
   var attributes = _ref.attributes,
       className = _ref.className;
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "gutentomato-movie"
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, attributes.movieURL && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "".concat(className, " gutentomato-movie")
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
     className: "gutentomato-movie__poster",
     src: attributes.moviePoster,
     alt: "".concat(attributes.movieName, " poster")
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", {
     className: "gutentomato-movie__name"
-  }, attributes.movieName), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h4", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Critics Consensus", "gutentomatoes")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
+  }, attributes.movieName), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h4", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Critics Consensus', 'gutentomatoes')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
     className: "gutentomato-movie__critics-consensus"
   }, attributes.movieCriticsConsensus), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "gutentomato-movie__scores-container"
@@ -713,7 +765,7 @@ function Save(_ref) {
     alt: "tomatoe icon"
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
     className: "gutentomato-movie__score"
-  }, attributes.movieTomatometer), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Tomatometer", "gutentomatoes")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("br", null), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Total Count:", "gutentomatoes"), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
+  }, attributes.movieTomatometer), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Tomatometer', 'gutentomatoes')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("br", null), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Total Count:', 'gutentomatoes'), ' ', Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
     className: "gutentomato-movie__count"
   }, attributes.movieReviewCount))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "col col--audience"
@@ -722,14 +774,14 @@ function Save(_ref) {
     alt: "popcorn icon"
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
     className: "gutentomato-movie__audience-score"
-  }, attributes.movieAudienceScore), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Audience Score", "gutentomatoes")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("br", null), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("User Ratings:", "gutentomatoes"), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
+  }, attributes.movieAudienceScore), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Audience Score', 'gutentomatoes')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("br", null), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('User Ratings:', 'gutentomatoes'), ' ', Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
     className: "gutentomato-movie__user-ratings-count"
   }, attributes.movieUserRatingsCount)))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
     href: attributes.movieURL,
     className: "gutentomato-movie__url",
     target: "_blank",
     rel: "nofollow noopener noreferrer"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Learn more on Rotten Tomatoes", "gutentomatoes"))));
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Learn more on Rotten Tomatoes', 'gutentomatoes')))));
 }
 
 /***/ }),

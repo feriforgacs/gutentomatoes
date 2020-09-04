@@ -2,8 +2,7 @@
 	"name": "create-block/gutentomatoes",
 	"title": "Rotten Tomatoes",
 	"category": "embed",
-	"icon": "star-filled",
-	"description": "Example block written with ESNext standard and JSX support – build step required.",
+	"description": "Use this block to add Rotten Tomatoes movie ratings to your posts or pages",
 	"textdomain": "create-block",
 	"supports": {
 		"html": false
