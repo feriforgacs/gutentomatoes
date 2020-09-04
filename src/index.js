@@ -6,7 +6,7 @@ import Save from './save';
 import icon from './icon';
 
 registerBlockType( 'create-block/gutentomatoes', {
-	title: __('Rotten Tomatoes', 'gutentomatoes'),
+	title: __( 'Rotten Tomatoes', 'gutentomatoes' ),
 	description: __(
 		'Use this block to add Rotten Tomatoes movie ratings to your posts or pages',
 		'gutentomatoes'

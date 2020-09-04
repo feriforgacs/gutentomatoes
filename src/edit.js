@@ -79,15 +79,15 @@ export default function Edit( {
 			}
 
 			setAttributes( {
-				moviePoster: 						response.data.poster,
-				movieName: 							response.data.name,
-				movieTomatometer: 			response.data.tomatometer,
-				movieReviewCount: 			response.data.review_count,
-				movieCriticsConsensus: 	response.data.critics_consensus,
-				movieAudienceScore: 		response.data.audience_score,
-				movieUserRatingsCount: 	response.data.user_ratings_count,
+				moviePoster: response.data.poster,
+				movieName: response.data.name,
+				movieTomatometer: response.data.tomatometer,
+				movieReviewCount: response.data.review_count,
+				movieCriticsConsensus: response.data.critics_consensus,
+				movieAudienceScore: response.data.audience_score,
+				movieUserRatingsCount: response.data.user_ratings_count,
 			} );
-		});
+		} );
 	};
 
 	return (
@@ -96,56 +96,76 @@ export default function Edit( {
 			{ isLoading && (
 				<Placeholder
 					isColumnLayout={ true }
-					className='gutentomato-movie--loading'
+					className="gutentomato-movie--loading"
 				>
 					<Spinner />
-					<p>{ __( 'Getting data from Rotten Tomatoes...', 'gutentomatoes' ) }</p>
+					<p>
+						{ __(
+							'Getting data from Rotten Tomatoes...',
+							'gutentomatoes'
+						) }
+					</p>
 				</Placeholder>
-			)}
+			) }
 
 			{ /* display movie information */ }
 			{ attributes.movieName && ! isLoading && (
-				<div className='gutentomato-movie'>
+				<div className="gutentomato-movie">
 					<img
-						className='gutentomato-movie__poster'
+						className="gutentomato-movie__poster"
 						src={ attributes.moviePoster }
 						alt={ `${ attributes.movieName } poster` }
 					/>
 
 					<div>
-						<h3 className='gutentomato-movie__name'>{ attributes.movieName }</h3>
+						<h3 className="gutentomato-movie__name">
+							{ attributes.movieName }
+						</h3>
 
 						<h4>{ __( 'Critics Consensus', 'gutentomatoes' ) }</h4>
 
-						<p className='gutentomato-movie__critics-consensus'>
+						<p className="gutentomato-movie__critics-consensus">
 							{ attributes.movieCriticsConsensus }
 						</p>
 
-						<div className='gutentomato-movie__scores-container'>
-							<div className='col col--tomatometer'>
-								<img src={ Tomatoe } alt='tomatoe icon' />
-								<span className='gutentomato-movie__score'>
+						<div className="gutentomato-movie__scores-container">
+							<div className="col col--tomatometer">
+								<img src={ Tomatoe } alt="tomatoe icon" />
+								<span className="gutentomato-movie__score">
 									{ attributes.movieTomatometer }
 								</span>
 								<p>
-									<strong>{ __( 'Tomatometer', 'gutentomatoes' ) }</strong>
+									<strong>
+										{ __( 'Tomatometer', 'gutentomatoes' ) }
+									</strong>
 									<br />
-									{ __( 'Total Count:', 'gutentomatoes' ) }{' '}
-									<span className='gutentomato-movie__count'>
+									{ __(
+										'Total Count:',
+										'gutentomatoes'
+									) }{ ' ' }
+									<span className="gutentomato-movie__count">
 										{ attributes.movieReviewCount }
 									</span>
 								</p>
 							</div>
-							<div className='col col--audience'>
-								<img src={ Popcorn } alt='popcorn icon' />
-								<span className='gutentomato-movie__audience-score'>
+							<div className="col col--audience">
+								<img src={ Popcorn } alt="popcorn icon" />
+								<span className="gutentomato-movie__audience-score">
 									{ attributes.movieAudienceScore }
 								</span>
 								<p>
-									<strong>{ __( 'Audience Score', 'gutentomatoes' ) }</strong>
+									<strong>
+										{ __(
+											'Audience Score',
+											'gutentomatoes'
+										) }
+									</strong>
 									<br />
-									{ __( 'User Ratings:', 'gutentomatoes' ) }{' '}
-									<span className='gutentomato-movie__user-ratings-count'>
+									{ __(
+										'User Ratings:',
+										'gutentomatoes'
+									) }{ ' ' }
+									<span className="gutentomato-movie__user-ratings-count">
 										{ attributes.movieUserRatingsCount }
 									</span>
 								</p>
@@ -154,21 +174,29 @@ export default function Edit( {
 
 						<a
 							href={ attributes.movieURL }
-							className='gutentomato-movie__url'
-							target='_blank'
-							rel='nofollow noopener noreferrer'
+							className="gutentomato-movie__url"
+							target="_blank"
+							rel="nofollow noopener noreferrer"
 						>
-							{ __( 'Learn more on Rotten Tomatoes', 'gutentomatoes' ) }
+							{ __(
+								'Learn more on Rotten Tomatoes',
+								'gutentomatoes'
+							) }
 						</a>
 					</div>
 				</div>
-			)}
+			) }
 
 			{ /* display form to embed movie information */ }
-			{ ( isSelected || ! attributes.movieURL ) && ! attributes.moviePoster && ! isLoading && (
+			{ ( isSelected || ! attributes.movieURL ) &&
+				! attributes.moviePoster &&
+				! isLoading && (
 					<Placeholder
 						icon={ icon }
-						label={ __( 'Rotten Tomatoes Movie URL', 'gutentomatoes' ) }
+						label={ __(
+							'Rotten Tomatoes Movie URL',
+							'gutentomatoes'
+						) }
 						instructions={ __(
 							'Paste a link to the content you want to display on your site.',
 							'gutentomatoes'
@@ -176,11 +204,13 @@ export default function Edit( {
 					>
 						<form
 							onSubmit={ () => parseURL( attributes.movieURL ) }
-							className='gutentomato-movie__form'
+							className="gutentomato-movie__form"
 						>
 							{ embedError && (
-								<p className='gutentomato-movie__error-message'>{ embedError }</p>
-							)}
+								<p className="gutentomato-movie__error-message">
+									{ embedError }
+								</p>
+							) }
 							<TextControl
 								value={ attributes.movieURL || '' }
 								placeholder={ __(
@@ -189,22 +219,24 @@ export default function Edit( {
 								) }
 								onChange={ ( val ) => {
 									setAttributes( { movieURL: val } );
-								}}
+								} }
 								disabled={ isLoading }
-								type='url'
+								type="url"
 								required
 							/>
 							<Button
-								type='submit'
+								type="submit"
 								isPrimary
 								disabled={ isLoading }
-								onClick={ () => scrapeMovieData( attributes.movieURL ) }
+								onClick={ () =>
+									scrapeMovieData( attributes.movieURL )
+								}
 							>
 								Embed
 							</Button>
 						</form>
 					</Placeholder>
-				)}
+				) }
 		</div>
 	);
 }
