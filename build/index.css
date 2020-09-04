@@ -1,2 +1,91 @@
-.wp-block-create-block-gutentomatoes .gutentomato-movie{align-items:flex-start;background:#eee;color:#555;display:flex;flex-direction:column;font-family:Arial, Helvetica, sans-serif;padding:1rem 1rem 2rem;position:relative}@media only screen and (min-width: 630px){.wp-block-create-block-gutentomatoes .gutentomato-movie{flex-direction:row;padding:1rem}}.wp-block-create-block-gutentomatoes .gutentomato-movie__poster{margin:0 auto 1rem;max-width:200px}@media only screen and (min-width: 630px){.wp-block-create-block-gutentomatoes .gutentomato-movie__poster{margin-right:1rem}}.wp-block-create-block-gutentomatoes .gutentomato-movie__name{border-bottom:1px solid #ddd;color:#333;font-size:1.3rem;margin:0 0 0.5rem;padding:0 0 0.5rem}.wp-block-create-block-gutentomatoes .gutentomato-movie h4{font-size:1.1rem;margin:0;padding:0}.wp-block-create-block-gutentomatoes .gutentomato-movie__critics-consensus{font-size:0.9rem;margin:0.5rem 0;padding:0}.wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container{display:flex;justify-content:space-evenly}.wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container .col{padding:0 0.2rem}.wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container .col img{margin-right:0.5rem;max-width:30px}.wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container .col p{font-size:0.9rem;margin:0;padding:0}.wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container .col:first-child{text-align:right}.wp-block-create-block-gutentomatoes .gutentomato-movie__score,.wp-block-create-block-gutentomatoes .gutentomato-movie__audience-score{font-size:2rem;font-weight:700}.wp-block-create-block-gutentomatoes .gutentomato-movie a{bottom:0.8rem;color:#888;font-size:0.7rem;position:absolute;right:1rem;text-align:right;text-decoration:underline}.wp-block-create-block-gutentomatoes .gutentomato-movie__form .components-base-control{flex:1 1 auto;padding:0 8px 0 0}.wp-block-create-block-gutentomatoes .gutentomato-movie__form .components-base-control .components-text-control__input{line-height:1.7}.wp-block-create-block-gutentomatoes .gutentomato-movie__error-message{border-left:4px solid #d94f4f;background-color:#f9e2e2;flex:100%;margin:0 0 1rem;padding:1rem}.wp-block-create-block-gutentomatoes .gutentomato-movie--loading{background:#f7f7f7}.wp-block-create-block-gutentomatoes .gutentomato-movie--loading .components-spinner{margin:5px auto}.wp-block-create-block-gutentomatoes .gutentomato-movie--loading p{color:#888;font-size:0.8rem;font-style:italic;text-align:center}
+.editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie {
+  align-items: flex-start;
+  background: #eee;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  padding: 1em 1em 2em;
+  position: relative; }
+  @media only screen and (min-width: 630px) {
+    .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie {
+      flex-direction: row;
+      padding: 1em; } }
+  .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__poster {
+    flex: 0 0 200px;
+    margin: 0 auto 1em;
+    width: 200px; }
+    @media only screen and (min-width: 630px) {
+      .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__poster {
+        margin-right: 1em; } }
+  .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__name {
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3em;
+    font-weight: 700;
+    margin: 0 0 0.5em;
+    padding: 0 0 0.5em; }
+  .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__subtitle {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    font-weight: 700;
+    margin: 0;
+    padding: 0; }
+  .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__critics-consensus {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9em;
+    margin: 0.5em 0;
+    padding: 0; }
+  .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container {
+    display: flex;
+    justify-content: space-evenly; }
+    .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container .col {
+      padding: 0 0.2em; }
+      .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container .col img {
+        margin-right: 0.5em;
+        max-width: 30px; }
+      .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container .col p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.9em;
+        margin: 0;
+        padding: 0; }
+      .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__scores-container .col:first-child {
+        text-align: right; }
+  .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__score, .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__audience-score {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    font-weight: 700; }
+  .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie a {
+    bottom: 0.8em;
+    color: #888;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7em;
+    position: absolute;
+    right: 1em;
+    text-align: right;
+    text-decoration: underline; }
+  .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__form .components-base-control {
+    flex: 1 1 auto;
+    padding: 0 8px 0 0; }
+    .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__form .components-base-control .components-text-control__input {
+      line-height: 1.7; }
+  .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie__error-message {
+    border-left: 4px solid #d94f4f;
+    background-color: #f9e2e2;
+    flex: 100%;
+    margin: 0 0 1em;
+    padding: 1em; }
+  .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie--loading {
+    background: #f7f7f7; }
+    .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie--loading .components-spinner {
+      margin: 5px auto; }
+    .editor-styles-wrapper .wp-block-create-block-gutentomatoes .gutentomato-movie--loading p {
+      color: #888;
+      font-size: 0.8em;
+      font-style: italic;
+      text-align: center; }
 
+
+/*# sourceMappingURL=index.css.map*/

@@ -118,11 +118,11 @@ export default function Edit( {
 					/>
 
 					<div>
-						<h3 className="gutentomato-movie__name">
+						<p className="gutentomato-movie__name">
 							{ attributes.movieName }
-						</h3>
+						</p>
 
-						<h4>{ __( 'Critics Consensus', 'gutentomatoes' ) }</h4>
+						<p className="gutentomato-movie__subtitle">{ __( 'Critics Consensus', 'gutentomatoes' ) }</p>
 
 						<p className="gutentomato-movie__critics-consensus">
 							{ attributes.movieCriticsConsensus }
