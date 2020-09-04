@@ -56,31 +56,31 @@ add_action( 'init', 'create_block_gutentomatoes_block_init' );
 /**
  * Add hidden input field with nonce to the footer of post edit and create pages
  */
-function gutentomatoes_insert_nonce(){
-	add_action('admin_footer', function(){
-		$gutentomatoes_nonce = wp_create_nonce( "gutentomatoes-nonce-string" );
+function gutentomatoes_insert_nonce() {
+	add_action( 'admin_footer', function() {
+		$gutentomatoes_nonce = wp_create_nonce( 'gutentomatoes-nonce-string' );
 		echo '<input type="hidden" name="gutentomatoes_nonce" id="gutentomatoes_nonce" value="' . $gutentomatoes_nonce . '" />';
 	});
 }
-add_action('load-post.php', 'gutentomatoes_insert_nonce');
-add_action('load-post-new.php', 'gutentomatoes_insert_nonce');
+add_action( 'load-post.php', 'gutentomatoes_insert_nonce' );
+add_action( 'load-post-new.php', 'gutentomatoes_insert_nonce' );
 
 /**
  * Process backend ajax requests
  */
-function gutentomatoes_ajax_handler(){
+function gutentomatoes_ajax_handler() {
 	check_ajax_referer( 'gutentomatoes-nonce-string', 'nonce', true );
 
 	$action = $_POST['plugin_action'];
 
-	switch ($action) {
+	switch ( $action ) {
 		case 'scrape_url':
 			$result = [
 				'status' 	=> 'error',
 				'data'		=> ''
 			];
 
-			$movie_url = esc_url_raw( $_POST[ 'movie_url' ] );
+			$movie_url = esc_url_raw( $_POST['movie_url'] );
 
 			// check URL format
 			if( ! filter_var( $movie_url, FILTER_VALIDATE_URL ) || strpos( $movie_url, 'rottentomatoes.com/m/' ) === FALSE ){
@@ -144,6 +144,8 @@ function gutentomatoes_ajax_handler(){
 				$movie_audience_score = $movie_audience_score_tag->item(1)->nodeValue;
 				// clean data
 				$movie_audience_score = preg_replace( '/[^0-9]/', '', strip_tags( trim( $movie_audience_score ) ) );
+				// add trailing % sign
+				$movie_audience_score .= "%";
 			}
 
 			// get user ratings count
@@ -160,13 +162,18 @@ function gutentomatoes_ajax_handler(){
 				$movie_user_ratings_count = number_format( $movie_user_ratings_count, 0, '', ' ' );
 			}
 
+			// clean data
+			$movie_name = esc_html( trim( $movie_schema->name ) );
+			$movie_tomatometer = intval( $movie_schema->aggregateRating->ratingValue ) . "%";
+			$movie_review_count = intval( $movie_schema->aggregateRating->reviewCount );
+
 			$movie_data = [
 				'poster'							=> $movie_poster,
-				'name' 								=> $movie_schema->name,
-				'tomatometer' 				=> $movie_schema->aggregateRating->ratingValue . "%",
-				'review_count' 				=> $movie_schema->aggregateRating->reviewCount,
+				'name' 								=> $movie_name,
+				'tomatometer' 				=> $movie_tomatometer,
+				'review_count' 				=> $movie_review_count,
 				'critics_consensus' 	=> $movie_critics_consensus,
-				'audience_score'			=> $movie_audience_score . "%",
+				'audience_score'			=> $movie_audience_score,
 				'user_ratings_count'	=> $movie_user_ratings_count
 			];
 
