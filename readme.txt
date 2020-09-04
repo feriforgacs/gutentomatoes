@@ -1,57 +1,53 @@
 === Gutentomatoes ===
-Contributors:      The WordPress Contributors
-Tags:              block
+Contributors:      ferkho
+Tags:              block, gutenberg, rotten tomatoes, movie review
 Requires at least: 5.3.2
-Tested up to:      5.4.1
+Tested up to:      5.5.1
 Stable tag:        0.1.0
 Requires PHP:      7.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-Example block written with ESNext standard and JSX support – build step required.
+Gutenberg block that you can use to add Rotten Tomatoes movie ratings to your posts or pages.
 
 == Description ==
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
-
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+Gutenberg block that you can use to add Rotten Tomatoes movie ratings to your posts or pages.
 
 == Installation ==
 
 This section describes how to install the plugin and get it working.
 
-e.g.
-
 1. Upload the plugin files to the `/wp-content/plugins/gutentomatoes` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
-
+2. Activate the plugin through the 'Plugins' screen in WordPress.
+3. After you activated the plugin, a new "Rotten Tomatoes" block will become available when you are editing your posts and pages.
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Can I add multiple movie reviews to one post? =
 
-An answer to that question.
+Yes, you can add as many reviews as you want.
 
-= What about foo bar? =
+= Can I change the design of the movie block? =
 
-Answer to foo bar dilemma.
+At the moment, you need to add extra CSS to your site to change the look and feel of the movie block.
+
+= What happens if I delete the plugin? =
+
+If you remove the plugin the reviews will stay in your posts and you'll have the option to convert them to HTML or remove them completely.
+
+= The block doesn't seem to load the movie information, what is the problem? =
+
+Make sure that you used the correct Rotten Tomatoes URL. In some cases, not all the information is available for a movie and that could cause some issues.
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Rotten Tomatoes embed block in the block selector
+2. Rotten Tomatoes block in a post
+3. Rotten Tomatoes movie review block in a post
+4. Rotten Tomatoes embed block in the post block selector
 
 == Changelog ==
 
 = 0.1.0 =
 * Release
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
